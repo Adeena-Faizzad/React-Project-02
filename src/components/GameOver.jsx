@@ -13,4 +13,4 @@ function GameOver({winner, onRestart}) {
   )
 }
 
-export default GameOver
+export default GameOver;

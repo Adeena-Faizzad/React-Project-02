@@ -1,5 +1,4 @@
-import { Linter } from 'eslint'
-import React from 'react'
+import React from 'react';
 
 function Log({turns}) {
   return (
@@ -9,4 +8,4 @@ function Log({turns}) {
   )
 }
 
-export default Log
+export default Log;

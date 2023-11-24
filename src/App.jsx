@@ -40,39 +40,31 @@ function deriveGameBoard(gameTurns){
 function deriveWinner(gameBoard, players){
   let winner;
 
-for(const combination of WINNING_COMBINATIONS){
-  const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column];
-  const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column];
-  const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column];
+  for(const combination of WINNING_COMBINATIONS){
+    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column];
+    const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column];
+    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column];
 
-  if(firstSquareSymbol && firstSquareSymbol === secondSquareSymbol && firstSquareSymbol === thirdSquareSymbol){
-    winner = players[firstSquareSymbol];
+    if(firstSquareSymbol && firstSquareSymbol === secondSquareSymbol && firstSquareSymbol === thirdSquareSymbol){
+      winner = players[firstSquareSymbol];
+    }
   }
-}
   return winner;
 }
 
 function App() {
   const [players, setPlayers] = useState(PLAYERS);
   const [gameTurns, setGameTurns] = useState([]);
-  // const [hasWinner, setHasWinner] = useState(false);
-  // const [activePlayer,setActivePlayer] = useState('X');
-
+ 
   const activePlayer = deriveActivePlayer(gameTurns);
+  const gameBoard = deriveGameBoard(gameTurns);
+  const winner = deriveWinner(gameBoard, players);
+  const hasDraw = gameTurns.length === 9 && !winner;
 
-  
-const gameBoard = deriveGameBoard(gameTurns);
-const winner = deriveWinner(gameBoard, players);
-
-const hasDraw = gameTurns.length === 9 && !winner;
-
-  function handleSelectSquare(rowIndex, colIndex){
-    // setActivePlayer((curActivePlayer)=> curActivePlayer === 'X' ? 'O' : 'X'); 
+  function handleSelectSquare(rowIndex,colIndex){
     setGameTurns((prevTurns) => {
-     const currentPlayer = deriveActivePlayer(prevTurns);
-
+      const currentPlayer = deriveActivePlayer(prevTurns);
       const updatedTurns = [{ square:{row: rowIndex, col: colIndex}, player: currentPlayer }, ...prevTurns];
-    
       return updatedTurns;
     });
   }
@@ -105,4 +97,4 @@ const hasDraw = gameTurns.length === 9 && !winner;
   )
 }
 
-export default App
+export default App;

@@ -1,7 +1,5 @@
 import React from 'react'
 
-
-
 function GameBoard({onSelectSquare, board}) {
     
   return (
@@ -18,4 +16,4 @@ function GameBoard({onSelectSquare, board}) {
   )
 }
 
-export default GameBoard
+export default GameBoard;
